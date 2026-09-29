@@ -16,8 +16,8 @@ export const INITIAL_STUDIO_CONFIG: StudioConfig = {
   ownerName: 'Jephthah Ozero',
   ownerTitle: 'Web Developer & App Creator',
   ownerEmail: 'ozerojephthah0@gmail.com',
-  whatsappNumber: '+2348123456789',
-  whatsappDisplay: '+234 812 345 6789',
+  whatsappNumber: '+2349019016049',
+  whatsappDisplay: '+234 901 901 6049',
   location: 'Lagos, Nigeria · Available Worldwide',
   currency: 'NGN',
   announcementNotice: 'Now booking client projects for this quarter. Typical response time under 24 hours.',
@@ -253,7 +253,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Dynamic currency and tax calculation',
       'Product variant selection (sizes, colors)'
     ],
-    imagePath: '/src/assets/images/project_cartnova_store_1790706868373.jpg',
+    imagePath: '/images/project_cartnova_store_1790706868373.jpg',
     liveDemoUrl: 'https://demo-cartnova.example.com',
     githubUrl: 'https://github.com/ozero/cartnova-store',
     year: '2025',
@@ -277,7 +277,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Multiple drum kits (808, Electronic, Acoustic, Lofi)',
       'Pattern saving and playback loops'
     ],
-    imagePath: '/src/assets/images/project_beatbox_pro_1790706879034.jpg',
+    imagePath: '/images/project_beatbox_pro_1790706879034.jpg',
     liveDemoUrl: 'https://demo-beatbox.example.com',
     githubUrl: 'https://github.com/ozero/beatbox-pro',
     year: '2025',
@@ -301,7 +301,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Reading time estimator and progress percentage',
       'Offline caching for saved stories'
     ],
-    imagePath: '/src/assets/images/project_novella_reader_1790706889128.jpg',
+    imagePath: '/images/project_novella_reader_1790706889128.jpg',
     liveDemoUrl: 'https://demo-novella.example.com',
     githubUrl: 'https://github.com/ozero/novella-app',
     year: '2025',
@@ -325,7 +325,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Export financial report to CSV / JSON',
       'Support for multiple currencies with Naira (₦) baseline'
     ],
-    imagePath: '/src/assets/images/project_budget_tracker_1790706899873.jpg',
+    imagePath: '/images/project_budget_tracker_1790706899873.jpg',
     liveDemoUrl: 'https://demo-budget.example.com',
     githubUrl: 'https://github.com/ozero/budget-tracker',
     year: '2024',
@@ -349,7 +349,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Leaderboard score history and difficulty settings',
       'Responsive touch controls for mobile play'
     ],
-    imagePath: '',
+    imagePath: '/images/proj_image_guess_1790716496954.jpg',
     liveDemoUrl: 'https://demo-imagegame.example.com',
     githubUrl: 'https://github.com/ozero/image-guessing-game',
     year: '2024',
@@ -373,7 +373,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Detailed accuracy metrics & speed rating',
       'Shareable score card generator'
     ],
-    imagePath: '',
+    imagePath: '/images/proj_quiz_master_1790716508119.jpg',
     liveDemoUrl: 'https://demo-quizmaster.example.com',
     githubUrl: 'https://github.com/ozero/quiz-master',
     year: '2024',
@@ -397,7 +397,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       'Daily developer challenges & global leaderboards (Upcoming)',
       'Integrated code editor preview'
     ],
-    imagePath: '',
+    imagePath: '/images/proj_coderush_1790716522654.jpg',
     liveDemoUrl: undefined,
     githubUrl: 'https://github.com/ozero/coderush-game',
     year: '2025',
@@ -508,7 +508,7 @@ export const INITIAL_USERS: User[] = [
     email: 'ozerojephthah0@gmail.com',
     role: 'owner',
     company: 'Ozero Digital Studio',
-    phone: '+2348123456789',
+    phone: '+2349019016049',
     createdAt: '2024-01-01T00:00:00Z'
   },
   {
@@ -704,7 +704,7 @@ Keeping bundles lightweight with Tailwind CSS and eliminating unnecessary third-
     readTime: '4 min read',
     publishedAt: '2026-09-15',
     tags: ['React', 'TypeScript', 'Web Architecture', 'Performance'],
-    featuredImage: '/src/assets/images/hero_developer_studio_1790706856452.jpg'
+    featuredImage: '/images/hero_developer_studio_1790706856452.jpg'
   },
   {
     id: 'blog-02',
@@ -722,7 +722,7 @@ Key Principles for High-Converting Storefronts:
     readTime: '5 min read',
     publishedAt: '2026-09-08',
     tags: ['E-Commerce', 'Paystack', 'Mobile UX', 'Conversion'],
-    featuredImage: '/src/assets/images/project_cartnova_store_1790706868373.jpg'
+    featuredImage: '/images/project_cartnova_store_1790706868373.jpg'
   },
   {
     id: 'blog-03',
@@ -744,7 +744,7 @@ Prevent malicious code injection with defensive regex validations and strict inp
     readTime: '6 min read',
     publishedAt: '2026-08-28',
     tags: ['Security', 'Backend', 'Paystack', 'Best Practices'],
-    featuredImage: '/src/assets/images/project_budget_tracker_1790706899873.jpg'
+    featuredImage: '/images/project_budget_tracker_1790706899873.jpg'
   }
 ];
 

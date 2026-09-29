@@ -7,16 +7,16 @@ export const Hero: React.FC = () => {
   const { navigateTo, config } = useStudio();
 
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+    <section className="relative pt-8 pb-16 sm:pt-14 sm:pb-20 md:pt-20 md:pb-28 overflow-hidden">
       {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-cyan-500/10 via-blue-600/10 to-purple-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] lg:w-[600px] h-[300px] sm:h-[350px] bg-gradient-to-tr from-cyan-500/10 via-blue-600/10 to-purple-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left Column: Proposition & CTA */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
-            {/* Editorial Lead Text (No static pills) */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-400">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-7 text-center lg:text-left">
+            {/* Editorial Lead Text */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-cyan-400">
               <span>{config.ownerName}</span>
               <span className="text-slate-600" aria-hidden="true">/</span>
               <span className="text-slate-300">Digital Studio</span>
@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Exact Headline as requested */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white leading-[1.15] text-balance">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white leading-[1.15] text-balance break-words">
               Let's Turn Your Ideas Into{' '}
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
                 Digital Experiences.
@@ -33,12 +33,12 @@ export const Hero: React.FC = () => {
             </h1>
 
             {/* Exact Subtitle as requested */}
-            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            <p className="text-sm sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
               I design and build modern websites and web applications for individuals, creators, and businesses.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2">
               <Button
                 size="lg"
                 variant="primary"
@@ -92,7 +92,7 @@ export const Hero: React.FC = () => {
             <div className="relative rounded-2xl overflow-hidden border border-slate-800/90 shadow-2xl bg-slate-900 group">
               <div className="aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden bg-slate-950">
                 <img
-                  src="/src/assets/images/hero_developer_studio_1790706856452.jpg"
+                  src="/images/hero_developer_studio_1790706856452.jpg"
                   alt="Jephthah Ozero Digital Studio Workspace and Engineering Environment"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   referrerPolicy="no-referrer"

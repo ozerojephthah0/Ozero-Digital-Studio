@@ -34,7 +34,8 @@ const AppContent: React.FC = () => {
     isAuthLoading,
     setIsAuthModalOpen,
     setAuthModalInitialMode,
-    setIsAIAdvisorOpen
+    setIsAIAdvisorOpen,
+    theme
   } = useStudio();
 
   const handleWhatsAppNotice = () => {
@@ -43,7 +44,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+    <div className={`min-h-screen flex flex-col transition-colors duration-200 selection:bg-cyan-500 selection:text-slate-950 ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       {/* Top Announcement Notice */}
       {config.announcementNotice && (
         <div className="bg-gradient-to-r from-slate-900 via-cyan-950/40 to-slate-900 border-b border-slate-800 py-1.5 px-4 text-center text-xs text-slate-300 flex items-center justify-center gap-2">

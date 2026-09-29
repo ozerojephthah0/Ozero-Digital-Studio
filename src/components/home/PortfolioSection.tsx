@@ -102,7 +102,7 @@ export const PortfolioSection: React.FC = () => {
             >
               {/* Media Thumbnail Container with Image Fallback */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950 border-b border-slate-800/80">
-                {project.imagePath && project.imagePath.endsWith('.jpg') ? (
+                {project.imagePath ? (
                   <img
                     src={project.imagePath}
                     alt={`${project.title} Screenshot Preview`}

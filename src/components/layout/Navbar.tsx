@@ -28,7 +28,8 @@ export const Navbar: React.FC = () => {
     setIsProfileModalOpen,
     setIsAIAdvisorOpen,
     isOwnerAuthenticated,
-    logout
+    logout,
+    theme
   } = useStudio();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -63,19 +64,19 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
         {/* Zone 1: Single text element Brand Wordmark */}
         <button
           onClick={() => handleNavClick('home')}
-          className="text-left group flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg py-1 px-1.5 cursor-pointer"
+          className="text-left group flex items-center gap-1.5 sm:gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg py-1 px-1 cursor-pointer shrink-0"
           aria-label="Ozero Digital Studio - Back to Home"
         >
-          <span className="text-lg sm:text-xl font-bold font-display tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+          <span className="text-base sm:text-xl font-bold font-display tracking-tight text-white group-hover:text-cyan-400 transition-colors">
             Ozero Digital Studio
           </span>
         </button>
 
-        {/* Zone 2: 4-6 Clean text navigation links */}
+        {/* Zone 2: Clean text navigation links for desktop */}
         <nav className="hidden xl:flex items-center gap-6 text-sm font-medium text-slate-300" aria-label="Main Navigation">
           {navLinks.map(link => {
             const isActive = currentPage === link.page;
@@ -233,29 +234,43 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="xl:hidden border-b border-slate-800 bg-slate-950/98 px-4 pt-3 pb-6 space-y-3 animate-in slide-in-from-top-3 duration-200 shadow-2xl">
-          <div className="grid grid-cols-2 gap-2 pt-1 pb-2 border-b border-slate-800/80">
-            {navLinks.map(link => (
-              <button
-                key={link.label}
-                onClick={() => handleNavClick(link.page, link.sectionId)}
-                className={`text-left px-3 py-2 rounded-xl text-xs transition-colors cursor-pointer ${
-                  currentPage === link.page
-                    ? 'bg-slate-900 text-cyan-400 font-semibold border border-cyan-500/20'
-                    : 'text-slate-300 hover:bg-slate-900/60'
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
+        <div className="xl:hidden border-b border-slate-800 bg-slate-950/98 px-3 sm:px-4 pt-3 pb-6 space-y-3 animate-in slide-in-from-top-3 duration-200 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto">
+          {/* Navigation Links Grid with 44px min-height */}
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 pt-1 pb-2 border-b border-slate-800/80">
+            {navLinks.map(link => {
+              const isActive = currentPage === link.page;
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link.page, link.sectionId)}
+                  className={`text-left px-3.5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${
+                    isActive
+                      ? 'bg-slate-900 text-cyan-400 font-semibold border border-cyan-500/30 shadow-sm'
+                      : 'text-slate-300 hover:bg-slate-900/70 hover:text-white'
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />}
+                </button>
+              );
+            })}
           </div>
 
-          <div className="flex flex-col gap-2 pt-2">
+          {/* Mobile Theme & Quick Mode Control */}
+          <div className="flex items-center justify-between px-3.5 py-2.5 min-h-[44px] rounded-xl bg-slate-900/70 border border-slate-800/80 text-xs sm:text-sm">
+            <span className="text-slate-300 font-medium">Display Appearance</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-slate-400 font-mono capitalize">{theme} Mode</span>
+              <ThemeToggle />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2.5 pt-1">
             {currentUser ? (
-              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2.5">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-white font-semibold">{currentUser.name}</span>
-                  <span className="text-[10px] text-cyan-400 font-mono uppercase">{currentUser.role}</span>
+                  <span className="text-white font-semibold truncate max-w-[200px]">{currentUser.name}</span>
+                  <span className="text-[10px] text-cyan-400 font-mono uppercase font-bold">{currentUser.role}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <button
@@ -263,7 +278,7 @@ export const Navbar: React.FC = () => {
                       setMobileMenuOpen(false);
                       navigateTo(currentUser.role === 'owner' ? 'admin' : 'portal');
                     }}
-                    className="py-1.5 px-2.5 rounded-lg bg-slate-800 text-xs text-slate-200 text-center cursor-pointer"
+                    className="min-h-[40px] py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 text-center cursor-pointer transition-colors"
                   >
                     Dashboard
                   </button>
@@ -272,14 +287,14 @@ export const Navbar: React.FC = () => {
                       setMobileMenuOpen(false);
                       setIsProfileModalOpen(true);
                     }}
-                    className="py-1.5 px-2.5 rounded-lg bg-slate-800 text-xs text-slate-200 text-center cursor-pointer"
+                    className="min-h-[40px] py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 text-center cursor-pointer transition-colors"
                   >
                     Profile Settings
                   </button>
                 </div>
                 <button
                   onClick={handleSignOut}
-                  className="w-full py-1.5 text-xs text-rose-400 text-center hover:underline cursor-pointer"
+                  className="w-full min-h-[38px] py-2 text-xs font-semibold text-rose-400 text-center hover:bg-rose-950/30 rounded-lg cursor-pointer transition-colors"
                 >
                   Sign Out
                 </button>
@@ -292,9 +307,10 @@ export const Navbar: React.FC = () => {
                     setAuthModalInitialMode('signin');
                     setIsAuthModalOpen(true);
                   }}
-                  className="py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-200 text-center cursor-pointer"
+                  className="min-h-[44px] py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs sm:text-sm font-semibold text-slate-200 text-center cursor-pointer transition-colors flex items-center justify-center gap-1.5"
                 >
-                  Sign In
+                  <User className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Sign In</span>
                 </button>
                 <button
                   onClick={() => {
@@ -302,9 +318,10 @@ export const Navbar: React.FC = () => {
                     setAuthModalInitialMode('register');
                     setIsAuthModalOpen(true);
                   }}
-                  className="py-2 px-3 rounded-xl bg-blue-600/30 border border-blue-500/40 text-xs font-semibold text-blue-200 text-center cursor-pointer"
+                  className="min-h-[44px] py-2.5 px-3 rounded-xl bg-cyan-950/80 hover:bg-cyan-900/90 border border-cyan-500/40 text-xs sm:text-sm font-semibold text-cyan-300 text-center cursor-pointer transition-colors flex items-center justify-center gap-1.5"
                 >
-                  Create Account
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Create Account</span>
                 </button>
               </div>
             )}
@@ -314,7 +331,7 @@ export const Navbar: React.FC = () => {
                 setMobileMenuOpen(false);
                 setIsAIAdvisorOpen(true);
               }}
-              className="w-full py-2.5 px-3 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full min-h-[44px] py-2.5 px-3.5 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer hover:bg-cyan-900/50 transition-colors"
             >
               <Bot className="w-4 h-4 text-cyan-400" />
               <span>Launch AI Project Scoping Advisor</span>

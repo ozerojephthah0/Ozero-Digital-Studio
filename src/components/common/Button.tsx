@@ -35,12 +35,12 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const baseStyles =
-    'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none cursor-pointer whitespace-nowrap active:scale-[0.98]';
+    'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none cursor-pointer whitespace-nowrap active:scale-[0.98] touch-manipulation';
 
   const sizeStyles = {
-    sm: 'text-xs px-3 py-1.5 rounded-lg gap-1.5',
-    md: 'text-sm px-4 py-2 rounded-xl gap-2',
-    lg: 'text-base px-6 py-3 rounded-xl gap-2.5'
+    sm: 'text-xs min-h-[38px] px-3.5 py-2 rounded-xl gap-1.5',
+    md: 'text-sm min-h-[44px] px-4.5 py-2.5 rounded-xl gap-2 font-semibold',
+    lg: 'text-base min-h-[48px] px-6 py-3 rounded-xl gap-2.5 font-bold'
   };
 
   const variantStyles = {

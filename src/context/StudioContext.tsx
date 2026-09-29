@@ -213,7 +213,12 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const saved = localStorage.getItem(LOCAL_STORAGE_KEYS.CONFIG);
     if (saved) {
       try {
-        return { ...INITIAL_STUDIO_CONFIG, ...JSON.parse(saved) };
+        const parsed = JSON.parse(saved);
+        if (parsed.whatsappNumber === '+2348123456789' || !parsed.whatsappNumber) {
+          parsed.whatsappNumber = '+2349019016049';
+          parsed.whatsappDisplay = '+234 901 901 6049';
+        }
+        return { ...INITIAL_STUDIO_CONFIG, ...parsed };
       } catch {
         return INITIAL_STUDIO_CONFIG;
       }
@@ -232,7 +237,22 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [projects, setProjects] = useState<ProjectItem[]>(() => {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEYS.PROJECTS);
     if (saved) {
-      try { return JSON.parse(saved); } catch { return INITIAL_PROJECTS; }
+      try {
+        const parsed: ProjectItem[] = JSON.parse(saved);
+        return parsed.map(p => {
+          const matchingInit = INITIAL_PROJECTS.find(ip => ip.id === p.id);
+          let img = p.imagePath || matchingInit?.imagePath || '';
+          if (img.startsWith('/src/assets/images/')) {
+            img = img.replace('/src/assets/images/', '/images/');
+          }
+          return {
+            ...p,
+            imagePath: img || matchingInit?.imagePath || ''
+          };
+        });
+      } catch {
+        return INITIAL_PROJECTS;
+      }
     }
     return INITIAL_PROJECTS;
   });
@@ -291,7 +311,22 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(() => {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEYS.BLOGS);
     if (saved) {
-      try { return JSON.parse(saved); } catch { return INITIAL_BLOG_POSTS; }
+      try {
+        const parsed: BlogPost[] = JSON.parse(saved);
+        return parsed.map(b => {
+          const matchingInit = INITIAL_BLOG_POSTS.find(ib => ib.id === b.id);
+          let img = b.featuredImage || matchingInit?.featuredImage || '';
+          if (img.startsWith('/src/assets/images/')) {
+            img = img.replace('/src/assets/images/', '/images/');
+          }
+          return {
+            ...b,
+            featuredImage: img || matchingInit?.featuredImage || ''
+          };
+        });
+      } catch {
+        return INITIAL_BLOG_POSTS;
+      }
     }
     return INITIAL_BLOG_POSTS;
   });

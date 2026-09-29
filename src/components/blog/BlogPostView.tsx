@@ -62,6 +62,9 @@ export const BlogPostView: React.FC = () => {
             alt={post.title}
             className="w-full h-full object-cover object-center"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
           />
         </div>
       )}

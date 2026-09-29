@@ -769,7 +769,7 @@ export const AdminDashboard: React.FC = () => {
               <input
                 type="text"
                 value={config.whatsappNumber}
-                onChange={e => updateConfig({ whatsappNumber: e.target.value })}
+                onChange={e => updateConfig({ whatsappNumber: e.target.value, whatsappDisplay: e.target.value })}
                 className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono"
               />
             </div>

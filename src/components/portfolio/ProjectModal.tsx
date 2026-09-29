@@ -55,12 +55,15 @@ export const ProjectModal: React.FC = () => {
       <div className="space-y-6">
         {/* Project Image Banner */}
         <div className="rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 aspect-[16/9] relative group">
-          {selectedProject.imagePath && selectedProject.imagePath.endsWith('.jpg') ? (
+          {selectedProject.imagePath ? (
             <img
               src={selectedProject.imagePath}
               alt={selectedProject.title}
               className="w-full h-full object-cover object-center"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 to-blue-950 text-center">
