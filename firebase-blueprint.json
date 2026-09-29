@@ -1,0 +1,114 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer and Owner user profile data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 120 },
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["customer", "owner"] },
+        "phone": { "type": "string", "maxLength": 30 },
+        "company": { "type": "string", "maxLength": 100 },
+        "avatarUrl": { "type": "string", "maxLength": 500 },
+        "emailVerified": { "type": "boolean" },
+        "notifyUpdates": { "type": "boolean" },
+        "notifyInvoices": { "type": "boolean" },
+        "notifyMarketing": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "name", "email", "role", "createdAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted administrative authority record",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["owner"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "ClientProject": {
+      "title": "ClientProject",
+      "description": "Active client project data and milestone progression",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "customerId": { "type": "string", "maxLength": 128 },
+        "customerName": { "type": "string", "maxLength": 120 },
+        "customerEmail": { "type": "string", "maxLength": 150 },
+        "title": { "type": "string", "maxLength": 200 },
+        "serviceCategory": { "type": "string", "maxLength": 100 },
+        "status": { "type": "string", "enum": ["discovery", "in_development", "review", "completed", "on_hold"] },
+        "budgetNGN": { "type": "number" },
+        "totalPaidNGN": { "type": "number" },
+        "startDate": { "type": "string", "maxLength": 50 },
+        "targetDate": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "customerId", "title", "serviceCategory", "status", "budgetNGN"]
+    },
+    "ProjectEnquiry": {
+      "title": "ProjectEnquiry",
+      "description": "Customer project discovery enquiry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "referenceNumber": { "type": "string", "maxLength": 50 },
+        "customerName": { "type": "string", "maxLength": 120 },
+        "email": { "type": "string", "maxLength": 150 },
+        "phoneOrWhatsapp": { "type": "string", "maxLength": 40 },
+        "projectCategory": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 5000 },
+        "estimatedBudgetNGN": { "type": "number" },
+        "preferredCompletionDate": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["new", "in_review", "in_progress", "completed", "archived", "rejected"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "customerName", "email", "projectCategory", "description", "estimatedBudgetNGN", "status", "createdAt"]
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Paystack project invoice",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "invoiceNumber": { "type": "string", "maxLength": 50 },
+        "projectId": { "type": "string", "maxLength": 128 },
+        "customerId": { "type": "string", "maxLength": 128 },
+        "customerEmail": { "type": "string", "maxLength": 150 },
+        "amountNGN": { "type": "number" },
+        "status": { "type": "string", "enum": ["draft", "pending", "paid", "cancelled"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "invoiceNumber", "customerId", "amountNGN", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private customer profile accessible by owner and authenticated user"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Trusted administrative authority records"
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/ClientProject" },
+      "description": "Client projects managed by owner and accessible by customer owner"
+    },
+    "/enquiries/{enquiryId}": {
+      "schema": { "$ref": "#/entities/ProjectEnquiry" },
+      "description": "Project enquiries submitted by prospects and managed by studio owner"
+    },
+    "/invoices/{invoiceId}": {
+      "schema": { "$ref": "#/entities/Invoice" },
+      "description": "Client invoices payable via Paystack"
+    }
+  }
+}
